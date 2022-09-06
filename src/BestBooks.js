@@ -79,18 +79,18 @@ class BestBooks extends React.Component {
           <input type="text" name="status" placeholder="Book Status" />
           <button type="submit">Add</button>
         </form> */}
-         <Form onSubmit={this.addNewBook}>
+         <Form onSubmit={this.addNewBook} style={{textAlign:"center"}}>
       <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Label>Book Name</Form.Label>
-        <Form.Control type="text" name="title" placeholder="Book Name" />
+        <Form.Label style={{textAlign:"center"}}>Book Name</Form.Label>
+        <Form.Control type="text" name="title" placeholder="Book Name" style={{textAlign:"center"}}/>
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicPassword">
-        <Form.Label>Book Description</Form.Label>
-        <Form.Control type="text" name="description" placeholder="Book Description" />
+        <Form.Label >Book Description</Form.Label>
+        <Form.Control type="text" name="description" placeholder="Book Description" style={{textAlign:"center"}}/>
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail">
         <Form.Label>Book Status</Form.Label>
-        <Form.Control type="text" name="status"  placeholder="Book Status" />
+        <Form.Control type="text" name="status"  placeholder="Book Status" style={{textAlign:"center"}}/>
       </Form.Group>
       <Button variant="primary" type="submit">
         Submit
@@ -101,11 +101,11 @@ class BestBooks extends React.Component {
             return (
               <Carousel.Item>
                 <img
-                  // className="d-block w-100"
+                  className="d-block w-100"
                   src="https://cdn.pixabay.com/photo/2015/11/19/21/10/glasses-1052010_960_720.jpg"
                   alt="First slide"
-                  width="95%"
-                  height="600px"
+                  width="75%"
+                  height="400px"
                 />
                 <Carousel.Caption>
                   <h2>{val.title}</h2>
