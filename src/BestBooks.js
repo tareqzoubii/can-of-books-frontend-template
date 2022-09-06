@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Carousel from 'react-bootstrap/Carousel';
-import Button from 'react-bootstrap/Button';
+import Button from 'react-bootstrap/Button'; // for buttons
 import Form from 'react-bootstrap/Form';
 
 class BestBooks extends React.Component {
