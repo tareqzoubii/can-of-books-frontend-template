@@ -2,10 +2,29 @@
 
 This repository has starter code to begin work on creating your own online bookshelf.
 
-## What can books do?
+# Labb12 Front-End
 
-Books are life-changing. They have the power to enlighten, educate, entertain, heal, and help us grow. Build out this code base to create an web app to track what books have impacted you, and what's recommended to read next.
+#  Book Application
 
-## Use this template
+**Author**: Tareq Alzoubii
+**Version**: 1.0.0 (increment the patch/fix version number if you make more commits past your first submission)
 
-Clone this repo to your own account with the green "Use this template" button. Then, add any collaborators. Now you are ready to start adding features! Deploy your site to let the world know which books have had the greatest impact on you, and what's recommended. Enjoy!
+## Overview
+In this app we  will make a code to render 3 books with their title and description using database after that i put it a form to add new books with their name and description and the status and a delete button to delete it 
+## Getting Started
+first we will create the backend and create the database then send it to react app clint to render it
+
+
+## Change Log
+
+
+09-05-2022 1:30am - Application now has a fully-functional express server, with a GET route for the location resource. -->
+
+## Estimates
+Estimate of time needed to complete: 4 hours
+
+Start time: 5:00
+
+Finish time: 1:30 AM
+
+Actual time needed to complete: 6 Hours
