@@ -4,12 +4,15 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Carousel from 'react-bootstrap/Carousel';
 import Button from 'react-bootstrap/Button'; // for buttons
 import Form from 'react-bootstrap/Form';
+import UpdateBooks from './UpdateBooks';
 
 class BestBooks extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      bookArr: []
+      bookArr: [],
+      showForm: false,
+      selectedBook: {}
     }
   }
   componentDidMount = () => {
@@ -60,6 +63,44 @@ class BestBooks extends React.Component {
     })
   }
 
+  openForm = (val) => {
+    this.setState({
+      showForm : true,
+      selectedBook : val
+    })
+  }
+
+  handleClose = () => {
+    this.setState({
+      showForm: false
+    })
+  }
+
+  UpdateBook = (event) => {
+    //event.preventDefault();
+    // alert("HELLO!");
+    let obj = {
+      title : event.target.title.value,
+      description : event.target.description.value,
+      status: event.target.status.value
+    }
+    //console.log(obj);
+    const id = this.state.selectedBook._id;
+    //console.log(id);
+    axios
+    .put(`${process.env.REACT_APP_URL}updateBook/${id}`, obj)
+    .then(result => {
+      this.setState({
+        bookArr: result.data
+        //console.log(result.data);
+      })
+      this.handleClose();
+    })
+    .catch(err=>{
+      console.log(err);
+    })
+  }
+
   /* TODO: Make a GET request to your API to fetch all the books from the database  */
 
   render() {
@@ -80,45 +121,52 @@ class BestBooks extends React.Component {
           <button type="submit">Add</button>
         </form> */}
          <Form onSubmit={this.addNewBook} style={{textAlign:"center"}}>
+          <div style={{display:"flex" , justifyContent:"space-around" , margin:"25px"}}>
       <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Label style={{textAlign:"center"}}>Book Name</Form.Label>
-        <Form.Control type="text" name="title" placeholder="Book Name" style={{textAlign:"center"}}/>
+        <Form.Control type="text" name="title" placeholder="Book Name" style={{ textAlign: "center", margin: "auto", width: "auto" }}/>
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicPassword">
-        <Form.Label >Book Description</Form.Label>
         <Form.Control type="text" name="description" placeholder="Book Description" style={{textAlign:"center"}}/>
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Label>Book Status</Form.Label>
         <Form.Control type="text" name="status"  placeholder="Book Status" style={{textAlign:"center"}}/>
       </Form.Group>
-      <Button variant="primary" type="submit">
+      </div>
+      <Button variant="primary" type="submit" style={{padding:"10px 30px", marginBottom:"15px", backgroundColor:"black"}}>
         Submit
       </Button>
     </Form>
         <Carousel>
           {this.state.bookArr.map((val) => {
             return (
-              <Carousel.Item>
+              <Carousel.Item style={{width:"100%" , alignItem:"center"}} >
                 <img
                   className="d-block w-100"
-                  src="https://cdn.pixabay.com/photo/2015/11/19/21/10/glasses-1052010_960_720.jpg"
+                  src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Solid_black.svg/768px-Solid_black.svg.png"
                   alt="First slide"
                   width="75%"
-                  height="400px"
+                  height="350px"
+                  
                 />
                 <Carousel.Caption>
-                  <h2>{val.title}</h2>
-                  <p>{val.description}</p>
-                  <p>{val.status}</p>
+                  <h2 style={{color:"white"}}>{val.title}</h2>
+                  <p style={{color:"white"}}>{val.description}</p>
+                  <p style={{color:"white"}}>{val.status}</p>
                   <button onClick={() => this.deleteBooks(val._id)}>
                     Delete Book
                   </button>
+                  <button onClick={() => this.openForm(val)}> Update Book </button>
                 </Carousel.Caption>
               </Carousel.Item>
             );
           })}
         </Carousel>
+        <UpdateBooks 
+        show = {this.state.showForm}
+        handleClose = {this.handleClose}
+        UpdateBook = {this.UpdateBook}
+        selectedBook = {this.state.selectedBook}
+        />
       </>
     );
   }
