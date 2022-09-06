@@ -13,8 +13,9 @@ class BestBooks extends React.Component {
     }
   }
   componentDidMount = () => {
+    console.log(process.env.REACT_APP_URL)
     axios
-    .get(`http://localhost:3888/getBooks`)
+    .get(`${process.env.REACT_APP_URL}getBooks`)
     .then(result =>{
       console.log(result.data);
       this.setState({
@@ -34,7 +35,7 @@ class BestBooks extends React.Component {
       status: event.target.status.value
     }
     axios
-    .post(`http://localhost:3888/addNewBook`, obj)
+    .post(`${process.env.REACT_APP_URL}addNewBook`, obj)
     .then(result => {
       this.setState({
         bookArr : result.data
@@ -47,7 +48,7 @@ class BestBooks extends React.Component {
   
   deleteBooks = (id) => {
     axios
-    .delete(`http://localhost:3888/deleteBooks/${id}`)
+    .delete(`${process.env.REACT_APP_URL}deleteBooks/${id}`)
     .then(result => {
       console.log("---->", result.data);
       this.setState({
