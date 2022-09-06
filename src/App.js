@@ -2,12 +2,14 @@ import React from 'react';
 import Header from './Header';
 import Footer from './Footer';
 import BestBooks from './BestBooks';
+import About from './About';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {
   BrowserRouter as Router,
   Routes,
   Route
 } from "react-router-dom";
+
 
 class App extends React.Component {
   render() {
@@ -19,6 +21,11 @@ class App extends React.Component {
             <Route 
               exact path="/"
               element={<BestBooks />}
+            >
+            </Route>
+            <Route 
+              exact path="/About"
+              element={<About />}
             >
             </Route>
             {/* PLACEHOLDER: add a route with a path of '/about' that renders the `About` component */}
